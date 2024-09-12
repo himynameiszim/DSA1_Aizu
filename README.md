@@ -1,4 +1,4 @@
-# DSA1_Aizu
+# FU01 - Data Structures and Algorithms I
 Solutions for FU01 - Data Structures and Algorithms I - Aizu Online Judge - University of Aizu (UoA)<br />
 
 ## Course's information
