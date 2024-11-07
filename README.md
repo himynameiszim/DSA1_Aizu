@@ -1,5 +1,6 @@
 # FU01 - Data Structures and Algorithms I
 Solutions for FU01 - Data Structures and Algorithms I - Aizu Online Judge - University of Aizu (UoA)<br />
+FU01 - データ構造とアルゴリズム I の解答 - Aizu Online Judge - 会津大学 (UoA)<br />
 
 ## Course's information
 Course's intructors : Senior Assoc Prof.Yutaka Watanobe & Assoc Prof.Siriweera <br />
