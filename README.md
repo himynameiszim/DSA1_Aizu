@@ -23,6 +23,6 @@ Course's textbook: Introduction to Automata Theory, Languages, and Computation -
 14. Topic 14 : Final examination
 
 ## Note
-Consider installing LaTeX Workshop[https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop] <br />
+Consider installing [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) <br />
 Educational purposes only. <br />
 DO NOT copy the work without understanding.
