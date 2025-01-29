@@ -55,6 +55,8 @@ Course's intructors: Senior Assoc Prof.YASUYUKI Kachi <br />
 Course's syllabus: [Linear Algebra II](https://web-ext.u-aizu.ac.jp/official/curriculum/syllabus/2024_1_E_009.html#SS11340) <br />
 Course's textbook: None (we used handouts)
 
+---------------------------------------
+
 ### Environment
 OS : Ubuntu 22.04.4 LTS <br />
 Compiler : g++ -std=c++17 (Ubuntu 11.4.0-1ubuntu1~22.04) <br />
