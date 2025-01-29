@@ -7,6 +7,7 @@ Course's intructors : Senior Assoc Prof.Yutaka Watanobe & Assoc Prof.Siriweera <
 Final score : A <br />
 Assignments' homepage : [Aizu Online Judge](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all) <br />
 Course's homepage : [FU01 - Algorithms and Data Structures I](https://u-aizu.ac.jp/course/alg1/) <br />
+Course's textbook: Introduction to Algorithms - Thomas H. Cormen, Charles E. Leiserson, Ronald Rivest, Clifford Stein (I prefer the 2^{nd} edition).
 
 ## Topics
 1. Topic 1 : Insertion Sort, Big O
