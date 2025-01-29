@@ -5,6 +5,7 @@ This is my solutions to the undergraduate courses that I took and saved. Some of
 1. [**FU01** - Data Structures and Algorithms I](#fu01---data-structures-and-algorithms-i)
 2. [**FU08** - Automata and Languages](#fu08---automata-and-languages)
 3. [**SS04** - Lifelong sports and Science Practicum](#ss04---lifelong-sports-and-science-practicum)
+4. [**MA02** - Linear Algebra II](#ma02---linear-algebra-ii)
 
 ---------------------------------------
 
@@ -44,6 +45,15 @@ Course's syllabus: [Lifelong Sports Science Practicum](https://web-ext.u-aizu.ac
 Course's textbook: None (we used handouts)
 
 ---------------------------------------
+
+## MA02 - Linear Algebra II ##
+Solutions to exercises and homeworks of the course MA02 - Linear Algebra II - University of Aizu <br />
+MA02 - 線形代数II コースの演習問題と宿題の解答 - 会津大学
+
+### Course's information ###
+Course's intructors: Senior Assoc Prof.YASUYUKI Kachi <br />
+Course's syllabus: [Linear Algebra II](https://web-ext.u-aizu.ac.jp/official/curriculum/syllabus/2024_1_E_009.html#SS11340) <br />
+Course's textbook: None (we used handouts)
 
 ### Environment
 OS : Ubuntu 22.04.4 LTS <br />
