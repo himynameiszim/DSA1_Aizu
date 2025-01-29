@@ -1,0 +1,106 @@
+\documentclass{report}
+
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage{dsfont}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{float}
+
+\DeclareMathOperator{\rank}{rank}
+\makeatletter
+\newenvironment{sqcases}{%
+  \matrix@check\sqcases\env@sqcases
+}{%
+  \endarray\right.%
+}
+\def\env@sqcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrack
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}l@{}}%
+}
+\makeatother
+
+\usetikzlibrary{calc}
+
+
+\input{/mnt/fa80f336-3342-4d78-8bfd-a43e434a2cda/Latex/preamble.tex}
+\input{/mnt/fa80f336-3342-4d78-8bfd-a43e434a2cda/Latex/macros.tex}
+\input{/mnt/fa80f336-3342-4d78-8bfd-a43e434a2cda/Latex/letterfonts.tex}
+
+\title{\Huge{FU08 \-- Automata and Languages}\\Exercise 1}
+\author{\huge{Nguyen Tuan Dung}\\\huge{s1312004}}
+\date{December 3, 2024}
+
+\begin{document}
+
+\maketitle
+
+\qs{Answer the following question}{
+Give an example of a relation that is:
+\newline
+(a) reflexive, transitive, but not symmetric\\
+(b) reflexive, symmetric, but not transitive\\
+(c) transitive, symmetric, but not reflexive}
+
+\sol{
+\newline
+\textbf{(a)} An example of a relation that is reflexive, transitive, but not symmetric is the relation R = \textbraceleft(0,0); (0,1); (0,2); (1,1); (1,2); (2,2)\textbraceright~on the set A = \textbraceleft0,1,2\textbraceright.
+R is the mathematical relation of $\leq$ on the set $A$.\\
+\textbf{Reflexive}: $\forall a \in A: (a,a) \in R$.\\
+\textbf{Transitive}: $\forall ((a,b) \in R) \land ((b,c) \in R)$ also $(a,c) \in R$.\\
+\textbf{Not symmetric}: $(1,2) \in R$ but $(2,1) \notin R$.\\
+\newline
+\noindent \textbf{(b)} An example of a relation that is reflexive, symmetric, but not transitive is the relation R = \textbraceleft(0,1); (1,0); (1,2); (2,1); (0,0); (1,1); (2,2)\textbraceright~on the set A = \textbraceleft0,1,2\textbraceright.\\
+\textbf{Reflexive}: The relation R contains (0,0); (1,1) and (2,2). \\
+\textbf{Symmetric}: The relation R contains (0,1); (1,0) also (1,2); (2,1). \\
+\textbf{Not transitive}: The relation R contains (0,1) and (1,2) but does not contain (0,2). \\
+\newline
+\noindent \textbf{(c)} An example of a relation that is transitive, symmetric, but not reflexive is the relation R = \textbraceleft(0,1); (1,0); (0,0); (1,1)\textbraceright~on the set A = \textbraceleft0,1,2\textbraceright.\\
+\textbf{Transitive}: The relation R satisfies (0,1), (1,0), (0,0), etc\dots\\
+\textbf{Symmetric}: The relation R contains (0,1), (1,0).\\
+\textbf{Not reflexive}: The relation R lacks (2,2) to satisfy the condition of reflexitivity.
+}
+
+
+\qs{Answer the following question}{
+Consider the relation between two sets defined by:\\
+$S_{1} \equiv S_{2}$ if and only if $|S_{1}| = |S_{2}|$.\\
+Show that this is an equivalence relation.}
+
+\sol{
+\newline
+To show that a relation is equivalence, we show that it is both reflexive, symmetric and transitive.\\
+\textbf{Reflexive}: A set is equivalence to itself (i.e $S_{1} \equiv S_{1} \Leftrightarrow |S_{1}| = |S_{1}|$).\\
+\textbf{Symmetric}: Since equality is an symmetric relation, if $|S_{1}| = |S_{2}| \Leftrightarrow |S_{2}| = |S_{1}|$.\\
+\textbf{Transitive}: Say, $(|S_1| = |S_2|) \land (|S_2| = |S_3|)$, since equality is a transitive relation, hence $|S_1| = |S_3|$.\\
+From the above proof, we see that the relation mentioned is Reflexive, Symmetric, Transitive, hence satisfies the condition of being an equivalence relation.}
+
+\qs{Answer the following question}{
+Let R be an equivalence relation on a set A.\\
+For each $a \in A$ the equivalence class of $a$ is denoted by $[a] =$\textbraceleft$b:aRb$\textbraceright.
+Show that for all $a,b \in A$, either $[a] = [b]$ or $[a] \cap [b] = \emptyset$.}
+
+\sol{
+\\
+Say, $[a] \cap [b] \neq \emptyset$ then $\exists k \in A \mathrm{~with~}k \in ([a]\cap[b])$. Hence, $((a,k) \in R) \land ((b,k) \in R)$. Since R is an equivalence relation as mentioned
+$(k,b) \in R$, this implies that $(a,b) \in R$ (i.e transitivity).\\
+$\bullet$ We know that $(a,b) \in R$. Let an arbitrary element $x \in [b] \implies (b,x) \in R$. Since R is an equivalence relation, $(a,x) \in R$ (i.e transitivity). According to definition $x \in [a]$.
+And since $x \in [b]$, then $[b] \subseteq [a]$. (1)\\
+$\bullet$ Again, $(b,a) \in R$ (symmetric). Let an arbitrary element $y \in [a] \implies (a,y) \in R$. Since R is an equivalence relation, $(b,y) \in R$ (i.e transitivity). According to definition $y \in [b]$.
+And since $y \in [a]$, then $[a] \subseteq [b]$. (2)\\
+From (1) (2) $\implies [a] = [b] ~\forall (a,b) \in R$ (3).\\
+Hence, we know that $\forall (a,b) \in R, [a] = [b]$ when $\exists x \in [a] \cap [b]$ (which means $[a], [b]$ are joint sets). (4)\\
+(3), (4) $\implies \forall (a,b) \in R$ 
+$\begin{sqcases}
+        [a] = [b]\\
+        [a] \cap [b] = \emptyset      
+\end{sqcases}$
+
+
+\end{document}

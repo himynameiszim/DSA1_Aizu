@@ -1,0 +1,238 @@
+\documentclass{report}
+
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage{dsfont}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{float}
+
+
+\usetikzlibrary{trees}
+\usetikzlibrary{automata, positioning, arrows}
+\DeclareMathOperator{\rank}{rank}
+\makeatletter
+\newenvironment{sqcases}{%
+  \matrix@check\sqcases\env@sqcases
+}{%
+  \endarray\right.%
+}
+\def\env@sqcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrack
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}l@{}}%
+}
+\makeatother
+
+\usetikzlibrary{calc}
+
+
+\input{/mnt/fa80f336-3342-4d78-8bfd-a43e434a2cda/Latex/preamble.tex}
+\input{/mnt/fa80f336-3342-4d78-8bfd-a43e434a2cda/Latex/macros.tex}
+\input{/mnt/fa80f336-3342-4d78-8bfd-a43e434a2cda/Latex/letterfonts.tex}
+
+\title{\Huge{FU08 \-- Automata and Languages}\\Exercise 10}
+\author{\huge{NGUYEN Tuan Dung}\\\huge{s1312004}}
+\date{January 24, 2025}
+
+\begin{document}
+
+\maketitle
+
+% Cau 1
+\qs{Put the following grammars into Chomsky normal form}{
+1. \newline
+\begin{equation*}
+    \begin{aligned}
+    &\mathrm{S} \longrightarrow \mathrm{A1B} \\
+    &\mathrm{A} \longrightarrow \mathrm{0A~|~} \lambda \\
+    &\mathrm{B} \longrightarrow \mathrm{0B~|~1B~|~}\lambda \\
+    \end{aligned}
+\end{equation*}
+\newline
+2. \newline
+\begin{equation*}
+    \begin{aligned}
+        & \mathrm{S} \longrightarrow \mathrm{AB~|~aaB} \\
+        & \mathrm{A} \longrightarrow \mathrm{a~|~Aa} \\
+        & \mathrm{B} \longrightarrow \mathrm{b}
+    \end{aligned}
+\end{equation*}
+\newline
+3. \newline
+\begin{equation*}
+    \begin{aligned}
+        & \mathrm{S} \longrightarrow \mathrm{ASB~|~}\lambda \\
+        & \mathrm{A} \longrightarrow \mathrm{aAS~|~a} \\
+        & \mathrm{B} \longrightarrow \mathrm{SbS~|~A~|~bb}
+    \end{aligned}
+\end{equation*}
+}
+
+\sol{\newline
+\textbf{1.}\newline
+$\bullet$ First, we remove $\mathrm{A} \longrightarrow \lambda$ :
+\begin{equation*}
+    \begin{aligned}
+        &\mathrm{S} \longrightarrow \mathrm{A1B~|~1B} \\
+        &\mathrm{A} \longrightarrow \mathrm{0A~|~0}\\
+        &\mathrm{B} \longrightarrow \mathrm{0B~|~1B~|~} \lambda
+    \end{aligned}
+\end{equation*}
+\newline
+$\bullet$ Secondly, we remove $\mathrm{B} \longrightarrow \lambda$ :
+\begin{equation*}
+    \begin{aligned}
+        &\mathrm{S} \longrightarrow \mathrm{A1B~|~1B~|~A1~|~1} \\
+        &\mathrm{A} \longrightarrow \mathrm{0A~|~0} \\
+        &\mathrm{B} \longrightarrow \mathrm{0B~|~1B~|~0~|~1}
+    \end{aligned}
+\end{equation*}
+\newline
+$\bullet$ Next, we construct our CNF. Notice that we have to decompose \{A1B; 1B; A1; 0A; 0B; 1B\}.
+Starting easy with $\mathrm{X} \longrightarrow 0$:
+\begin{equation*}
+    \begin{aligned}
+        &\mathrm{S} \longrightarrow \mathrm{A1B~|~1B~|~A1~|~1} \\
+        &\mathrm{A} \longrightarrow \mathrm{XA~|~0} \\
+        &\mathrm{X} \longrightarrow 0 \\
+        &\mathrm{B} \longrightarrow \mathrm{XB~|~1B~|~0~|~1} 
+    \end{aligned}
+\end{equation*}
+\newline
+$\bullet$ Continue with $\mathrm{Y} \longrightarrow 1$:
+\begin{equation*}
+    \begin{aligned}
+        &\mathrm{S} \longrightarrow \mathrm{AYB~|~YB~|~AY~|~1} \\
+        &\mathrm{A} \longrightarrow \mathrm{XA~|~0} \\
+        &\mathrm{X} \longrightarrow 0 \\
+        &\mathrm{Y} \longrightarrow 1 \\
+        &\mathrm{B} \longrightarrow \mathrm{XB~|~YB~|~0~|~1} 
+    \end{aligned}
+\end{equation*}
+\newline
+$\bullet$ What's left is only $\mathrm{S} \longrightarrow \mathrm{AYB}$.
+We will create $\mathrm{P} \longrightarrow \mathrm{AY}$.
+\begin{equation*}
+    \begin{aligned}
+        &\mathrm{S} \longrightarrow \mathrm{PB~|~YB~|~AY~|~1} \\
+        &\mathrm{A} \longrightarrow \mathrm{XA~|~0} \\
+        &\mathrm{B} \longrightarrow \mathrm{XB~|~YB~|~0~|~1} \\
+        &\mathrm{X} \longrightarrow 0 \\
+        &\mathrm{Y} \longrightarrow 1 \\
+        &\mathrm{P} \longrightarrow \mathrm{AY}~~~~~~~\mathrm{The~grammar~is~now~in~Chomsky~Normal~Form.}
+    \end{aligned}
+\end{equation*}
+\newline
+\textbf{2.}\newline
+$\bullet$ The grammar does not have any lambda transition, also starting state S does not appear in the RHS.
+Hence, we notice the terms for decomposition: \{aaB; Aa\}. Starting with $\mathrm{X} \longrightarrow \mathrm{a}$
+\begin{equation*}
+    \begin{aligned}
+        & \mathrm{S} \longrightarrow \mathrm{AB~|~XXB} \\
+        & \mathrm{A} \longrightarrow \mathrm{a~|~AX} \\
+        & \mathrm{B} \longrightarrow \mathrm{b} \\
+        & \mathrm{X} \longrightarrow \mathrm{a}
+    \end{aligned}
+\end{equation*}
+\newline
+$\bullet$ Next, we replace $\mathrm{Y} \longrightarrow \mathrm{XB}$.
+\begin{equation*}
+    \begin{aligned}
+        & \mathrm{S} \longrightarrow \mathrm{AB~|~XY} \\
+        & \mathrm{A} \longrightarrow \mathrm{a~|~AX} \\
+        & \mathrm{B} \longrightarrow \mathrm{b} \\
+        & \mathrm{X} \longrightarrow \mathrm{a} \\
+        & \mathrm{Y} \longrightarrow \mathrm{XB}
+    \end{aligned}
+\end{equation*}
+\newline
+For the grammar above, it is in Chomsky Normal Form. \\~\\
+
+\noindent \textbf{3.} \newline
+\begin{minipage}[t]{0.48\textwidth}
+    $\bullet$ The grammar has the starting state S at the RHS. Hence, we create a new state S'.
+    \begin{equation*}
+        \begin{aligned}
+            & \mathrm{S'} \longrightarrow \mathrm{S} \\
+            & \mathrm{S} \longrightarrow \mathrm{ASB~|~}\lambda \\
+            & \mathrm{A} \longrightarrow \mathrm{aAS~|~a} \\
+            & \mathrm{B} \longrightarrow \mathrm{SbS~|~A~|~bb}
+        \end{aligned}
+    \end{equation*}
+    $\bullet$ Next, we ommit $\mathrm{S} \longrightarrow \lambda$.
+    \begin{equation*}
+        \begin{aligned}
+            &\mathrm{S'} \longrightarrow \mathrm{ASB~|~AB~|~}\lambda\\
+            &\mathrm{S} \longrightarrow \mathrm{ASB~|~AB}\\
+            &\mathrm{A} \longrightarrow \mathrm{aAS~|~a~|~aA}\\
+            &\mathrm{B} \longrightarrow \mathrm{SbS~|~bS~|~Sb~|~A~|~bb~|~b}
+        \end{aligned}
+    \end{equation*}
+    $\bullet$ Ommit $\mathrm{B} \longrightarrow \mathrm{A}$ since it violates the rule of CNF.
+    \begin{equation*}
+        \begin{aligned}
+            &\mathrm{S'} \longrightarrow \mathrm{ASB~|~AB~|~}\lambda\\
+            &\mathrm{S} \longrightarrow \mathrm{ASB~|~AB}\\
+            &\mathrm{A} \longrightarrow \mathrm{aAS~|~a~|~aA}\\
+            &\mathrm{B} \longrightarrow \mathrm{SbS~|~bS~|~Sb~|~bb~|~b~|~aAs~|~a~|~aA}
+        \end{aligned}
+    \end{equation*}
+    $\bullet$ Create $\mathrm{X} \longrightarrow \mathrm{AS}$.
+    \begin{equation*}
+        \begin{aligned}
+            &\mathrm{S'} \longrightarrow \mathrm{XB~|~AB~|~}\lambda\\
+            &\mathrm{S} \longrightarrow \mathrm{XB~|~AB}\\
+            &\mathrm{A} \longrightarrow \mathrm{aX~|~a~|~aA}\\
+            &\mathrm{B} \longrightarrow \mathrm{SbS~|~bS~|~Sb~|~bb~|~b~|~aX~|~a~|~aA}\\
+            &\mathrm{X} \longrightarrow \mathrm{AS}
+        \end{aligned}
+    \end{equation*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    $\bullet$ Ommit $\mathrm{Y} \longrightarrow \mathrm{a}$ since it violates the rule of CNF.
+    \begin{equation*}
+        \begin{aligned}
+            &\mathrm{S'} \longrightarrow \mathrm{XB~|~AB~|~}\lambda\\
+            &\mathrm{S} \longrightarrow \mathrm{XB~|~AB}\\
+            &\mathrm{A} \longrightarrow \mathrm{YX~|~a~|~YA}\\
+            &\mathrm{B} \longrightarrow \mathrm{SbS~|~bS~|~Sb~|~bb~|~b~|~YX~|~a~|~YA}\\
+            &\mathrm{X} \longrightarrow \mathrm{AS}\\
+            &\mathrm{Y} \longrightarrow \mathrm{a}
+        \end{aligned}
+    \end{equation*}
+    $\bullet$ Create $\mathrm{Z} \longrightarrow \mathrm{b}$.
+    \begin{equation*}
+        \begin{aligned}
+            &\mathrm{S'} \longrightarrow \mathrm{XB~|~AB~|~}\lambda\\
+            &\mathrm{S} \longrightarrow \mathrm{XB~|~AB}\\
+            &\mathrm{A} \longrightarrow \mathrm{YX~|~a~|~YA}\\
+            &\mathrm{B} \longrightarrow \mathrm{SZS~|~ZS~|~SZ~|~ZZ~|~b~|~YX~|~a~|~YA}\\
+            &\mathrm{X} \longrightarrow \mathrm{AS}\\
+            &\mathrm{Y} \longrightarrow \mathrm{a}\\
+            &\mathrm{Z} \longrightarrow \mathrm{b}
+        \end{aligned}
+    \end{equation*}
+    $\bullet$ Lastly, create $\mathrm{C} \longrightarrow \mathrm{SZ}$.
+    \begin{equation*}
+        \begin{aligned}
+            &\mathrm{S'} \longrightarrow \mathrm{XB~|~AB~|~}\lambda\\
+            &\mathrm{S} \longrightarrow \mathrm{XB~|~AB}\\
+            &\mathrm{A} \longrightarrow \mathrm{YX~|~a~|~YA}\\
+            &\mathrm{B} \longrightarrow \mathrm{CS~|~ZS~|~SZ~|~ZZ~|~b~|~YX~|~a~|~YA}\\
+            &\mathrm{X} \longrightarrow \mathrm{AS}\\
+            &\mathrm{Y} \longrightarrow \mathrm{a}\\
+            &\mathrm{Z} \longrightarrow \mathrm{b}\\
+            &\mathrm{C} \longrightarrow \mathrm{SZ}
+        \end{aligned}
+    \end{equation*}
+\end{minipage}
+The above grammar is in Chomsky Normal Form.
+}
+\end{document}
