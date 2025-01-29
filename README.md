@@ -58,6 +58,17 @@ Course's textbook: Introduction to Automata Theory, Languages, and Computation -
 13. Topic 13 : Turing machines
 14. Topic 14 : Final examination
 
+## SS04 - Lifelong Sports Science Practicum ##
+Final report for the course SS04 - Lifelong Sports Science Practicum - University of Aizu <br />
+I took Yoga in part of this massive course. <br/>
+SS04「生涯スポーツ科学実習」最終レポート - 会津大学 <br />
+この大規模なコースの一部でヨガを受講しました。
+
+### Course's information ###
+Course's intructors: SUZUKI Fumie <br />
+Course's syllabus: [Lifelong Sports Science Practicum](https://web-ext.u-aizu.ac.jp/official/curriculum/syllabus/2024_1_E_002.html#SS11630) <br />
+Course's textbook: None (we used handouts)
+
 ## Environment
 OS : Ubuntu 22.04.4 LTS <br />
 Compiler : g++ -std=c++17 (Ubuntu 11.4.0-1ubuntu1~22.04) <br />
